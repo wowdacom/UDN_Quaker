@@ -131,6 +131,9 @@ export default {
     'Youtube': Youtube,
     'Quote': Quote,
     'AnimationMap': AnimationMap
+  },
+  handleRequireImg(url){
+    return require('~' + url)
   }
 }
 </script>

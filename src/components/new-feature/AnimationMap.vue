@@ -32,100 +32,186 @@
 
 export default {
   name: 'AnimationMap',
+  watch: {
+    screenWidth (size) {
+      this.screenWidth = size
+      console.log(size)
+    }
+  },
   data () {
     return {
+      screenWidth: document.body.clientWidth,
+      screenName: 'mobile',
       map: {
-        src: '../static/CoverBg/web/chart002.jpg'
+        src: require('~/CoverBg/web/chart002.jpg')
       },
       mapAnimation: {
         hints: [
           {
             id: 1,
-            img: '../static/CoverBg/web/content-02.jpg'
+            img: require('~/CoverBg/web/content-02.jpg')
           },
           {
             id: 2,
-            img: '../static/CoverBg/web/content-03.jpg'
+            img: require('~/CoverBg/web/content-03.jpg')
           },
           {
             id: 3,
-            img: '../static/CoverBg/web/content-04.jpg'
+            img: require('~/CoverBg/web/content-04.jpg')
           },
           {
             id: 4,
-            img: '../static/CoverBg/web/content-05.jpg'
+            img: require('~/CoverBg/web/content-05.jpg')
           },
           {
             id: 5,
-            img: '../static/CoverBg/web/content-06.jpg'
+            img: require('~/CoverBg/web/content-06.jpg')
           }
         ],
         step: 0,
-        steps: [
-          {
-            'position': 'static',
-            'top': '80px',
-            'left': '0',
-            'width': '100vw',
-            'height': '100vh'
+        steps: {
+          mobile: [
+            {
+              'position': 'static',
+              'top': '80px',
+              'left': '0',
+              'width': '100vw',
+              'height': '100vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '50%',
+              'left': '0',
+              'transform': 'translateY(-5%)',
+              'width': '100vw',
+              'height': '100vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translateX(-35%)',
+              'width': '400vw',
+              'height': '400vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translateX(-65%)',
+              'width': '400vw',
+              'height': '400vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translateX(-15%)',
+              'width': '400vw',
+              'height': '400vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translateX(-25%)',
+              'width': '400vw',
+              'height': '400vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '50%',
+              'left': '0',
+              'transform': 'translateY(-25%)',
+              'width': '400vw',
+              'height': '400vh'
+            },
+            {
+              'position': 'static',
+              'width': '100vw'
+            }
+          ],
+          pad: {
+
           },
-          {
-            'position': 'fixed',
-            'top': '50%',
-            'left': '0',
-            'transform': 'translateY(-5%)',
-            'width': '100vw',
-            'height': '100vh'
-          },
-          {
-            'position': 'fixed',
-            'top': '80px',
-            'left': '0',
-            'transform': 'translateX(-35%)',
-            'width': '400vw',
-            'height': '400vh'
-          },
-          {
-            'position': 'fixed',
-            'top': '80px',
-            'left': '0',
-            'transform': 'translateX(-15%)',
-            'width': '400vw',
-            'height': '400vh'
-          },
-          {
-            'position': 'fixed',
-            'top': '80px',
-            'left': '0',
-            'transform': 'translateX(-25%)',
-            'width': '400vw',
-            'height': '400vh'
-          },
-          {
-            'position': 'fixed',
-            'top': '80px',
-            'left': '0',
-            'transform': 'translateX(-10%)',
-            'width': '400vw',
-            'height': '400vh'
-          },
-          {
-            'position': 'fixed',
-            'top': '50%',
-            'left': '0',
-            'transform': 'translateY(-25%)',
-            'width': '400vw',
-            'height': '400vh'
-          },
-          {
-            'position': 'static',
-            'width': '100vw'
-          }
-        ]
+          table: [
+            {
+              'position': 'static',
+              'top': '80px',
+              'left': '0',
+              'width': '100vw',
+              'height': '100vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '50px',
+              'left': '0',
+              'width': '100vw',
+              'height': '100vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translate(0%, -50%)',
+              'width': '200vw',
+              'height': '200vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translate(-5%, -15%)',
+              'width': '200vw',
+              'height': '200vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translate(-40%, -50%)',
+              'width': '200vw',
+              'height': '200vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translate(-40%, -20%)',
+              'width': '200vw',
+              'height': '200vh'
+            },
+            {
+              'position': 'fixed',
+              'top': '80px',
+              'left': '0',
+              'transform': 'translate(-40%, -5%)',
+              'width': '200vw',
+              'height': '200vh'
+            }
+          ]
+        }
       }
     }
   },
   mounted () {
+        const vm = this
+            window.onresize = () => {
+                return (() => {
+                    window.screenWidth = document.body.clientWidth
+                    vm.screenWidth = window.screenWidth
+                })()
+            }
+
+        if ( 768 <= vm.screenWidth && vm.screenWidth <= 1023 ) {
+          this.screenName = 'pad'
+        } else if ( 1024 < vm.screenWidth ) {
+          this.screenName = 'table'
+        } else {
+          this.screenName = 'mobile'
+        }
+
+
         window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
@@ -161,6 +247,8 @@ export default {
         console.log(6)
       } else if (  step5 < currentHieght && currentHieght < mapEnd ) {
         this.mapAnimation.step = 1;
+      } else if (  step5 < currentHieght && currentHieght < mapEnd ) {
+        this.mapAnimation.step = 1;
       } else {
         this.mapAnimation.step = 0;
       }
@@ -171,7 +259,7 @@ export default {
   },
   computed: {
     handleMapStyle () {
-      let current = this.mapAnimation.steps[this.mapAnimation.step]
+      let current = this.mapAnimation.steps[this.screenName][this.mapAnimation.step]
       current['background-image'] = `url("${this.map.src}")`
       return {
         ...current
@@ -229,7 +317,7 @@ export default {
             top: 50%;
             right: 10%;
             width: 30%;
-            height: 100px;
+            height: 30%;
           }
         }
       }
@@ -248,10 +336,16 @@ export default {
           border-radius: 5px;
           z-index: 120;
           @media (min-width: 768px) and (max-width: 1023px) {
-
+            top: 50%;
+            right: 10%;
+            width: 380PX;
+            height: 100PX;
           }
           @media screen and (min-width: 1024px) {
-
+            top: 50%;
+            right: 10%;
+            width: 30%;
+            height: 30%;
           }
         }
       }
@@ -270,10 +364,16 @@ export default {
           border-radius: 5px;
           z-index: 120;
           @media (min-width: 768px) and (max-width: 1023px) {
-
+            top: 50%;
+            right: 10%;
+            width: 380PX;
+            height: 100PX;
           }
           @media screen and (min-width: 1024px) {
-
+            top: 50%;
+            right: 10%;
+            width: 30%;
+            height: 30%;
           }
         }
       }
@@ -292,10 +392,16 @@ export default {
           border-radius: 5px;
           z-index: 120;
           @media (min-width: 768px) and (max-width: 1023px) {
-
+            top: 50%;
+            right: 10%;
+            width: 380PX;
+            height: 100PX;
           }
           @media screen and (min-width: 1024px) {
-
+            top: 50%;
+            right: 10%;
+            width: 30%;
+            height: 30%;
           }
         }
       }
@@ -314,10 +420,16 @@ export default {
           border-radius: 5px;
           z-index: 120;
           @media (min-width: 768px) and (max-width: 1023px) {
-
+            top: 50%;
+            right: 10%;
+            width: 380PX;
+            height: 100PX;
           }
           @media screen and (min-width: 1024px) {
-
+            top: 50%;
+            right: 10%;
+            width: 30%;
+            height: 30%;
           }
         }
       }
