@@ -1,7 +1,8 @@
 <template>
   <div class="image-contain">
+    <slot></slot>
     <img :src="srcRWD(setProps('src'), setProps('srcWeb'))" :alt="setProps('description')">
-    <div class="description">{{setProps('description')}}</div>
+    <div class="description" v-html="setProps('description')"></div>
   </div>
 </template>
 <script>
