@@ -3,7 +3,7 @@
     <indicator></indicator>
         <head-bar>
           <a href="index.html">副食品3大觀念</a>
-          <a href="./complementary-food/index.html" target="_blanck">邁向營養均衡的關鍵</a>
+          <a href="http://nmdap.udn.com.tw/Quaker/index.html" target="_blanck">邁向營養均衡的關鍵</a>
         </head-bar>
 
         <cover name="添加副食品掌握3大關鍵" position="rightTop" :src="require('../static/CoverBg/bg01_m.jpg')" :src-web="require('../static/CoverBg/web/bg01.jpg')" use-arrow="yes" use-animate="yes" use-hint="yes">
@@ -36,7 +36,7 @@
           <p><br></p>
           <p>近年國內父母多遵照世界衛生組織的建議，以純母乳哺育至6 個月後為目標，再開始添加副食品。然而，臺灣嬰兒於4 個月後鐵質缺乏狀況之比例明顯上升。為降低缺鐵性貧血的機率，臺灣兒科醫學會則建議嬰兒滿4-6個月後，可以開始給予副食品，補足母奶以外的營養。</p>
           <p><br></p>
-          <Column-One description="<b>飲食中之鐵和鋅多為生物利用率較低的食物，造成鐵和鋅之吸收受到抑制，故鐵缺乏通常易伴隨鋅缺乏</b><br>資料來源：衛生福利部國民健康署《嬰兒期營養參考手冊》、 吳佩芯（2012）台灣嬰幼兒體位與營養狀況之探" :src="require('../static/SectionBg/chart001_m.png')" :src-web="require('../static/SectionBg/web/chart001.png')">
+          <Column-One description="<b>飲食中之鐵和鋅多為生物利用率較低的食物，造成鐵和鋅之吸收受到抑制，故鐵缺乏通常易伴隨鋅缺乏</b><br>資料來源：衛生福利部國民健康署《嬰兒期營養參考手冊》、 吳佩芯（2012）台灣嬰幼兒體位與營養狀況之探討" :src="require('../static/SectionBg/chart001_m.png')" :src-web="require('../static/SectionBg/web/chart001.png')">
             <h4><b>0-6個月嬰兒主要營養素攝取不足百分比(%)</b></h4>
           </Column-One>
           <p><br></p>
@@ -77,8 +77,6 @@
           <p>一方面是因為一旦開始副食品，就沒有明確的公式計算孩子究竟要吃到多少量。或者，多數的爸媽費心做了副食品，卻遇到「嬰兒不吃」的問題，確實讓人頭疼。</p>
           <p><br></p>
           <p>結果發現，這些孩子多數都會在餐與餐間吃零食，進而影響正餐的時候吃不到建議攝取量，導致發育緩慢。林郁茹營養師說，<b>「一到三歲的孩子，每餐至少要吃半碗到七分滿的飯，想長高長壯就是要吃到這麼多的量。」</b></p>
-          <p><br></p>
-          <p><br></p>
         </content-container>
 
         
@@ -127,6 +125,11 @@
           <h5>[1]資料來源：Dewey KG, Brown KH: Update on technical issues concerning complementary feeding of young children in developing countries and implications for intervention programs. Food Nutr Bull 2003;24:5-28</h5>
           <p><br></p>
           <Share href="https://udn.com/upf/newmedia/2017_data/ideal/index.html"></Share>
+          <logo use-ubrand="yes" use-vision='yes'>
+            <div class="logo">
+              <a href="https://udn.com/news/index" target="_blank"><img src="https://udn.com/upf/newmedia/image/20180829Logo/logo_news2.jpg"></a>
+            </div>         
+          </logo>
           <p><br></p>
           <editor>
             <div>製作人：林筱穎</div>
@@ -134,7 +137,7 @@
             <div>攝影：賴佐誌</div>
             <div>影音：蘇士堯</div>
             <div>網頁製作：胡凈悟</div>
-            <div>議題行銷：張乃文、陳欣媛、王敏</div>
+            <div>議題行銷：張乃文、陳欣媛、王敏霏</div>
             <div>監製：董谷音、潘如瑩、陳曼薇</div>
             <div>圖片來源：123RF</div>
             <div>2018.09.27</div>

@@ -1,6 +1,6 @@
 <template>
     <div class="animation-map" ref="animation-map">
-        <h3 class="map-title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h3>
+        <h4 class="map-title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h4>
         <div class="map-wrapper" ref="map-start">
         <div class="map enterMap" 
             :style="handleMapStyle">
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import _throttle from 'lodash.throttle'
 
 export default {
   name: 'AnimationMap',
@@ -130,7 +131,8 @@ export default {
               'top': '50%',
               'left': '50%',
               'width': '100vw',
-              'height': '100vh'
+              'height': '30vh',
+              'background-position-y': 'top'
             },
             {
               'position': 'fixed',
@@ -151,7 +153,7 @@ export default {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-5%, -10%)',
+              'transform': 'translate(-5%, -5%)',
               'width': '400vw',
               'height': '400vh'
             },
@@ -175,7 +177,7 @@ export default {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-63%, -6%)',
+              'transform': 'translate(-53%, -10%)',
               'width': '400vw',
               'height': '400vh'
             },
@@ -189,10 +191,11 @@ export default {
             },
             {
               'position': 'relative',
-              'left': '50%',
               'top': '50%',
+              'left': '50%',
               'width': '100vw',
-              'height': '100vh'
+              'height': '100vh',
+              'background-position-y': 'center'
             }
           ],
           pad: [
@@ -340,7 +343,6 @@ export default {
                 return (() => {
                     window.screenWidth = document.body.clientWidth
                     vm.screenWidth = window.screenWidth
-                    window.location.reload();
                 })()
             }
 
@@ -355,7 +357,7 @@ export default {
         window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
-    handleScroll () {
+    handleScroll: _throttle(function (e) {
 
       let currentHieght = window.pageYOffset
 
@@ -369,40 +371,41 @@ export default {
       
 
       if ( mapStart - 200 < currentHieght && currentHieght < mapStart ) {
-        console.log("map fixed")
+
         this.mapAnimation.step = 1;
         this.map.title.isShow = true
-      } else if ( mapStart < currentHieght && currentHieght < hint1 ) {
-        console.log("before hint 1")
+      } else if ( mapStart <= currentHieght && currentHieght < hint1 ) {
+
         this.mapAnimation.step = 2;
-        
         this.targetControl()
-      } else if ( hint1 < currentHieght && currentHieght < hint2 ) {
-        console.log("hint 1 coming")
+      } else if ( hint1 <= currentHieght && currentHieght < hint2 ) {
+
         this.mapAnimation.step = 3;
         this.targetControl('target1')
-      } else if (  hint2 < currentHieght && currentHieght <  hint3 ) {
-        console.log("hint 2 coming")
+      } else if (  hint2 <= currentHieght && currentHieght <  hint3 ) {
+
         this.mapAnimation.step = 4;
         this.targetControl('target2')
-      } else if (  hint3 < currentHieght && currentHieght <  hint4 ) {
-         console.log("hint 3 coming")
+      } else if (  hint3 <= currentHieght && currentHieght <  hint4 ) {
+
         this.mapAnimation.step = 5;
         this.targetControl('target3')
-      } else if (  hint4 < currentHieght && currentHieght <  hint5 ) {
-         console.log("hint 4 coming")
+      } else if (  hint4 <= currentHieght && currentHieght <  hint5 ) {
+
         this.mapAnimation.step = 6;
         this.targetControl('target4')
-      } else if (  hint5 < currentHieght && currentHieght < mapEnd ) {
-         console.log("hint 5 coming")
+      } else if (  hint5 <= currentHieght && currentHieght < mapEnd - 200 ) {
         this.mapAnimation.step = 7;
         this.targetControl('target5')
-      } else {
+      } else if (  mapEnd - 200 <= currentHieght && currentHieght < mapEnd ) {
         this.mapAnimation.step = 8;
+      } else if (  currentHieght < mapEnd ||  mapStart - 200 < currentHieght ) {
+        this.mapAnimation.step = 0;
         this.map.title.isShow = false
         this.targetControl()
       }
-    },
+    }, 133
+    ),
     targetControl (currentTarget) {
 
       let targetDefault = {
@@ -449,7 +452,7 @@ export default {
 <style lang="scss">
 $target-color: rgba(#8FC320, 1);
 $target-size: 85px;
-$target-mobile-size: 30px;
+$target-mobile-size: 50px;
 
 .animation-map {
     background-color: inherit;
@@ -466,7 +469,6 @@ $target-mobile-size: 30px;
       text-align: center;
       margin: 0px;
       padding: 0px;
-      transform: translateY(120%);
       z-index: 120;
     }
     .map-title-active {
@@ -474,22 +476,22 @@ $target-mobile-size: 30px;
     }
     .map-wrapper {
       position: relative;
-      width: 99vw;
-      height: 100vh;
       background-color: inherit;
       overflow: hidden;
       margin: 0;
       padding: 0;
+      @media screen and (min-width: 1024px) {
+          height: 100vh;
+      }
       .map {
-        top: 0%;
+        top: 100%;
         left: 50%;
         position: relative;
         transform: translateX(-50%);
-        height: auto;
         background-size: contain;
         background-repeat: no-repeat;
         z-index: 110;
-        transition: all 0.5s;
+        transition: all 1s;
         transform-origin: center;
         @media (min-width: 768px) and (max-width: 1023px) {
           background-size: contain;
@@ -534,7 +536,7 @@ $target-mobile-size: 30px;
         .target1 {
           position: absolute;
           z-index: 120;
-          left: 24%;
+          left: 23%;
           top: 20.5%;
           @media screen and (min-width: 1024px) {
             left: 23%;
@@ -544,7 +546,7 @@ $target-mobile-size: 30px;
         .target2 {
           position: absolute;
           z-index: 120;
-          left: 27%;
+          left: 26%;
           top: 13.5%;
           @media screen and (min-width: 1024px) {
             position: absolute;
@@ -557,7 +559,7 @@ $target-mobile-size: 30px;
           position: absolute;
           z-index: 120;
           left: 64%;
-          top: 21.5%;
+          top: 21%;
           @media screen and (min-width: 1024px) {
             position: absolute;
             z-index: 120;
@@ -568,13 +570,13 @@ $target-mobile-size: 30px;
         .target4 {
           position: absolute;
           z-index: 120;
-          left: 84.5%;
-          top: 8.5%;
+          left: 61%;
+          top: 15.5%;
           @media screen and (min-width: 1024px) {
             position: absolute;
             z-index: 120;
-            left: 83%;
-            top: 30%;
+            left: 60%;
+            top: 56%;
           }
         }
         .target5 {
@@ -597,7 +599,7 @@ $target-mobile-size: 30px;
         background-color: inherit;
         img {
           position: absolute;
-          top: 80%;
+          bottom: -10%;
           right: 0;
           width: 100%;
           height: auto;
@@ -624,7 +626,7 @@ $target-mobile-size: 30px;
         background-color: inherit;
         img {
           position: absolute;
-          top: 80%;
+          bottom: -10%;
           right: 0;
           width: 100%;
           height: auto;
@@ -651,7 +653,7 @@ $target-mobile-size: 30px;
         background-color: inherit;
         img {
           position: absolute;
-          top: 80%;
+          bottom: -10%;
           right: 0;
           width: 100%;
           height: auto;
@@ -678,7 +680,7 @@ $target-mobile-size: 30px;
         background-color: inherit;
         img {
           position: absolute;
-          top: 80%;
+          bottom: -10%;
           right: 0;
           width: 100%;
           height: auto;
@@ -705,7 +707,7 @@ $target-mobile-size: 30px;
         background-color: inherit;
         img {
           position: absolute;
-          top: 80%;
+          bottom: -10%;
           right: 0;
           width: 100%;
           height: auto;
