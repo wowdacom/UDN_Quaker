@@ -1,6 +1,6 @@
 <template>
     <div class="animation-map" ref="animation-map">
-        <h4 class="map-title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h4>
+        <h4 class="map-title" ref="title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h4>
         <div class="map-wrapper" ref="map-start">
         <div class="map enterMap" 
             :style="handleMapStyle">
@@ -153,41 +153,31 @@ export default {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-5%, -5%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-5%, -5%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-10%, -5%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-10%, -5%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-60%, -15%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-60%, -15%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-53%, -10%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-53%, -10%)'
             },
             {
               'position': 'fixed',
               'top': '50%',
               'left': '0',
-              'transform': 'translate(-50%, -10%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-50%, -10%)'
             },
             {
               'position': 'relative',
@@ -280,49 +270,37 @@ export default {
               'position': 'fixed',
               'top': '50%',
               'left': '50%',
-              'transform': 'translate(-50%, -50%)',
-              'width': '80vw',
-              'height': '80vh'
+              'transform': 'translate(-50%, -50%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(0%, -50%)',
-              'width': '200vw',
-              'height': '200vh'
+              'transform': 'translate(0%, -50%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-5%, -15%)',
-              'width': '200vw',
-              'height': '200vh'
+              'transform': 'translate(-5%, -15%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-40%, -50%)',
-              'width': '200vw',
-              'height': '200vh'
+              'transform': 'translate(-40%, -50%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-37%, -20%)',
-              'width': '200vw',
-              'height': '200vh'
+              'transform': 'translate(-37%, -20%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translate(-40%, -5%)',
-              'width': '200vw',
-              'height': '200vh'
+              'transform': 'translate(-40%, -5%)'
             },
             {
               'position': 'relative',
@@ -360,6 +338,11 @@ export default {
     handleScroll: _throttle(function (e) {
 
       let currentHieght = window.pageYOffset
+
+      console.log(currentHieght)
+      console.log(this.$refs['animation-map'].offsetTop)
+      console.log(this.$refs['animation-map'].offsetTop + this.$refs['map-start'].offsetTop)
+      console.log(this.$refs['animation-map'].offsetTop + this.$refs['hints1'].offsetTop)
 
       let mapStart = this.$refs['animation-map'].offsetTop
       let hint1 = this.$refs['animation-map'].offsetTop + this.$refs['hints1'].offsetTop
@@ -399,6 +382,7 @@ export default {
         this.targetControl('target5')
       } else if (  mapEnd - 200 <= currentHieght && currentHieght < mapEnd ) {
         this.mapAnimation.step = 8;
+        this.targetControl()
       } else if (  currentHieght < mapEnd ||  mapStart - 200 < currentHieght ) {
         this.mapAnimation.step = 0;
         this.map.title.isShow = false
@@ -478,6 +462,7 @@ $target-mobile-size: 50px;
       position: relative;
       background-color: inherit;
       overflow: hidden;
+      height: 100vh;
       margin: 0;
       padding: 0;
       @media screen and (min-width: 1024px) {
@@ -493,12 +478,16 @@ $target-mobile-size: 50px;
         z-index: 110;
         transition: all 1s;
         transform-origin: center;
+        width: 400vw;
+        height: 400vh;
         @media (min-width: 768px) and (max-width: 1023px) {
           background-size: contain;
           top: 50%;
           left: 50%;
         }
         @media screen and (min-width: 1024px) {
+          width: 200vw;
+          height: 200vh;
           background-size: contain;
           top: 50%;
           left: 50%;
