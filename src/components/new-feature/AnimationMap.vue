@@ -1,26 +1,10 @@
 <template>
     <div class="animation-map" ref="animation-map">
-        
-        <div class="map-wrapper" ref="map-start">
-        <div class="map enterMap" 
-            :style="handleMapStyle">
-            <h3 class="map-title" ref="title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h3>
-            <div class="target1 targets" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target2 targets" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target3 targets" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target4 targets" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target5 targets" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-        </div>
+        <div class="extra-wrapper"  ref="map-start">
+          <div class="map-wrapper" :style="animationMapStep[step]" >
+            <img :src="map.src" :style="animationTargetStep[step]" class="map">
+            <img class="target" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point01.png')" alt="">
+          </div>
         </div>
         <div class="map-hints1" ref="hints1">
             <img :src="mapAnimation.hints[0].img" alt="">
@@ -37,27 +21,11 @@
         <div class="map-hints5" ref="hints5">
             <img :src="mapAnimation.hints[4].img" alt="">
         </div>
-        <div class="map-wrapper" ref="map-end">
-        <div class="map leaveMap"
-            :style="handleMapStyle"
-        >
-            <h3 class="map-title" ref="title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h3>
-            <div class="target1 targets" :class="{ 'isShow': targets.target1.isShow }" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target2 targets" :class="{ 'isShow': targets.target2.isShow }" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target3 targets" :class="{ 'isShow': targets.target3.isShow }" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target4 targets" :class="{ 'isShow': targets.target4.isShow }" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-            <div class="target5 targets" :class="{ 'isShow': targets.target5.isShow }" :src="map.target.src">
-              <div class="kernel"></div>
-            </div>
-        </div>
+        <div class="extra-wrapper"  ref="map-end">
+          <div class="map-wrapper" :style="animationMapStep[step]">
+            <img :src="map.src" :style="animationTargetStep[step]" class="map">
+            <img class="target" :class="{ 'isShow': targets.target1.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point01.png')" alt="">
+          </div>
         </div>
     </div>  
 </template>
@@ -75,6 +43,77 @@ export default {
   },
   data () {
     return {
+      animationMapStep: [
+        {
+          'position': 'relative',
+          'top': '0',
+          'left': '50%',
+          'transform': 'translateX(-25%)'
+        },
+        {
+          'position': 'fixed',
+          'top': '0'
+        },
+        {
+          'position': 'fixed',
+          'top': '0'
+        },
+        {
+          'position': 'fixed',
+          'top': '0'
+        },
+        {
+          'position': 'fixed',
+          'top': '0'
+        },
+        {
+          'position': 'fixed',
+          'top': '0'
+        },
+        {
+          'position': 'fixed',
+          'top': '0'
+        },
+        {
+          'position': 'fixed',
+          'top': '0'
+        }
+      ],
+      animationTargetStep: [
+        {
+          'position': 'absolute',
+          'transform': 'scale(0.25)'
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(0%, 0%) scale(.5)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(0%, -50%) scale(1)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-5%, -25%) scale(1)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-50%, -50%) scale(1)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-50%, -25%) scale(1)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-40%, -2%) scale(1)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(0%, 0%) scale(.5)',
+        }
+      ],
+      step: 0,
       screenWidth: document.body.clientWidth,
       screenName: 'mobile',
       map: {
@@ -364,41 +403,53 @@ export default {
 
       if ( mapStart - 200 < currentHieght && currentHieght < mapStart ) {
 
+        this.step = 1
         this.mapAnimation.step = 1;
         this.map.title.isShow = false
       } else if ( mapStart <= currentHieght && currentHieght < hint1 ) {
 
+        
         this.mapAnimation.step = 2;
         this.targetControl()
         this.map.title.isShow = true
       } else if ( hint1 <= currentHieght && currentHieght < hint2 ) {
 
+        this.step = 2;
         this.mapAnimation.step = 3;
         this.targetControl('target1')
       } else if (  hint2 <= currentHieght && currentHieght <  hint3 ) {
 
+        this.step = 3;
         this.mapAnimation.step = 4;
         this.targetControl('target2')
       } else if (  hint3 <= currentHieght && currentHieght <  hint4 ) {
 
+        this.step = 4;
         this.mapAnimation.step = 5;
         this.targetControl('target3')
       } else if (  hint4 <= currentHieght && currentHieght <  hint5 ) {
-
+        this.step = 5;
         this.mapAnimation.step = 6;
         this.targetControl('target4')
       } else if (  hint5 <= currentHieght && currentHieght < mapEnd - 200 ) {
+
+        this.step = 6;
         this.mapAnimation.step = 7;
         this.targetControl('target5')
         this.map.title.isShow = true
       } else if (  mapEnd - 200 <= currentHieght && currentHieght < mapEnd ) {
+
+        this.step = 7;
         this.mapAnimation.step = 8;
         this.targetControl()
         this.map.title.isShow = false
 
       } else if (  currentHieght < mapEnd ||  mapStart - 200 < currentHieght ) {
         this.mapAnimation.step = 0;
+        this.step = 0
         this.targetControl()
+      } else {
+        this.step = 0
       }
     }, 133
     ),
@@ -459,167 +510,50 @@ $target-mobile-size: 85px;
       font-weight: 900;
       background-color: rgba(0, 0, 0, 0);
     }
-    .map-wrapper {
-      position: relative;
-      background-color: inherit;
-      overflow: hidden;
+    .extra-wrapper {
+      width: 100vw;
       height: 100vh;
-      margin: 0;
-      padding: 0;
-      @media screen and (min-width: 1024px) {
-          height: 100vh;
-      }
-      .map {
-        top: 100%;
-        left: 50%;
-        position: relative;
-        transform: translateX(-50%);
-        background-size: contain;
-        background-repeat: no-repeat;
-        z-index: 110;
+      .map-wrapper {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
         transition: all 0.5s;
-        transform-origin: center;
-        width: 400vw;
-        height: 400vh;
-        @media (min-width: 768px) and (max-width: 1023px) {
-          background-size: contain;
-          top: 50%;
-          left: 50%;
-        }
-        @media screen and (min-width: 1024px) {
-          width: 200vw;
-          height: 200vh;
-          background-size: contain;
-          top: 50%;
-          left: 50%;
-        }
-        .map-title {
+        .map {
+          width: 200%;
+          height: auto;
           position: absolute;
-          text-align: center;
-          width: 100%;
-          margin: 0px;
-          padding: 0px;
+          top: 0;
+          left: 0;
           z-index: 120;
-          top: -10%;
-          left: 50%;
-          font-size: 1em;
-          transform: translateX(-50%);
-          @media screen and (min-width: 1024px) {
-            font-size: 2em;
-          }
+          transform-origin: left top;
+          transform: translateY(-50%);
+          transition: all 1s;
         }
-        .map-title-active {
-          opacity: 0;
+        .target {
+          width: 200%;
+          height: auto;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 130;
+          transform: translateY(-50%);
+          transform-origin: left top;
+          transition: all 1s;
+          animation: flash 1s infinite alternate;
+          visibility:hidden;
         }
-        .targets {
-          border: solid 1px $target-color;
-          width: $target-mobile-size;
-          height: $target-mobile-size;
-          border-radius: 50%;
-          opacity: 0;
-          .kernel {
-            position: relative;
-            width: 30%;
-            height: 30%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background-color: $target-color;
-            border-radius: inherit;
-            box-shadow: 0 0 10px 5px $target-color;
-            animation: spread 2s infinite;
-          }
-          @media screen and (min-width: 1024px) {
-            width: $target-size;
-            height: $target-size;
-          }
-          @keyframes spread {
-              from {box-shadow: 0 0 0px 0px $target-color;}
-              to {box-shadow: 0 0 7px 7px $target-color;}
-          }
-        }
+
         .isShow {
-            opacity: 1;
-          }
-        .target1 {
-          position: absolute;
-          z-index: 120;
-          left: 23%;
-          top: 21.5%;
-          @media (min-width: 768px) and (max-width: 1023px) {
-            left: 24%;
-            top: 27.5%;
-          } 
-          @media screen and (min-width: 1024px) {
-            left: 23%;
-            top: 73%;
-          }
+          visibility: visible;
         }
-        .target2 {
-          position: absolute;
-          z-index: 120;
-          left: 26%;
-          top: 14.5%;
-          @media (min-width: 768px) and (max-width: 1023px) {
-            left: 26.5%;
-            top: 18.5%;
-          }
-          @media screen and (min-width: 1024px) {
-            position: absolute;
-            z-index: 120;
-            left: 25.5%;
-            top: 48%;
-          }     
-        }
-        .target3 {
-          position: absolute;
-          z-index: 120;
-          left: 64%;
-          top: 22%;
-          @media (min-width: 768px) and (max-width: 1023px) {
-            left: 64.5%;
-            top: 28.5%;
-          }
-          @media screen and (min-width: 1024px) {
-            position: absolute;
-            z-index: 120;
-            left: 62%;
-            top: 76%;
-          }
-        }
-        .target4 {
-          position: absolute;
-          z-index: 120;
-          left: 61%;
-          top: 16.5%;
-          @media (min-width: 768px) and (max-width: 1023px) {
-            left: 61.5%;
-            top: 21.5%;
-          } 
-          @media screen and (min-width: 1024px) {
-            position: absolute;
-            z-index: 120;
-            left: 59.5%;
-            top: 56%;
-          }
-        }
-        .target5 {
-          position: absolute;
-          left: 58%;
-          top: 6.5%;
-          @media (min-width: 768px) and (max-width: 1023px) {
-            left: 58.5%;
-            top: 8%;
-          }
-          @media screen and (min-width: 1024px) {
-            position: absolute;
-            z-index: 120;
-            left: 56.5%;
-            top: 20%;
-          }     
+        @keyframes flash {
+          from {opacity: 0;}
+          to {opacity: 1;}
         }
       }
     }
+
+    //提示字
     .map-hints1 {
         position: relative;
         width: 100%;
