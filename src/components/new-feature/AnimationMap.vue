@@ -1,9 +1,10 @@
 <template>
     <div class="animation-map" ref="animation-map">
-        <h4 class="map-title" ref="title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h4>
+        
         <div class="map-wrapper" ref="map-start">
         <div class="map enterMap" 
             :style="handleMapStyle">
+            <h3 class="map-title" ref="title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h3>
             <div class="target1 targets" :src="map.target.src">
               <div class="kernel"></div>
             </div>
@@ -38,7 +39,9 @@
         </div>
         <div class="map-wrapper" ref="map-end">
         <div class="map leaveMap"
-            :style="handleMapStyle">
+            :style="handleMapStyle"
+        >
+            <h3 class="map-title" ref="title" :class="{ 'map-title-active': map.title.isShow }">4個月至3歲副食品 建議一日攝取量</h3>
             <div class="target1 targets" :class="{ 'isShow': targets.target1.isShow }" :src="map.target.src">
               <div class="kernel"></div>
             </div>
@@ -175,9 +178,9 @@ export default {
             },
             {
               'position': 'fixed',
-              'top': '50%',
+              'top': '0%',
               'left': '0',
-              'transform': 'translate(-50%, -10%)'
+              'transform': 'translate(-50%, 0%)'
             },
             {
               'position': 'relative',
@@ -191,8 +194,17 @@ export default {
           pad: [
             {
               'position': 'relative',
-              'top': '80px',
-              'left': '0',
+              'top': '50%',
+              'left': '50%',
+              'width': '100vw',
+              'height': '100vh',
+              'transform': 'translate(-50%, -30%)',
+              'background-position-y': 'top'
+            },
+            {
+              'position': 'fixed',
+              'top': '50%',
+              'left': '50%',
               'width': '100vw',
               'height': '100vh'
             },
@@ -208,45 +220,40 @@ export default {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translateX(-35%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-5%, -15%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translateX(-65%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-10%, -3%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translateX(-10%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-62%, -14%)'
             },
             {
               'position': 'fixed',
               'top': '80px',
               'left': '0',
-              'transform': 'translateX(-25%)',
-              'width': '400vw',
-              'height': '400vh'
+              'transform': 'translate(-58%, -2%)'
             },
             {
               'position': 'fixed',
+              'top': '0%',
+              'left': '0',
+              'transform': 'translate(-52%, 5%)'
+            },
+            {
+              'position': 'relative',
               'top': '50%',
-              'left': '0',
-              'transform': 'translateY(-25%)',
-              'width': '400vw',
-              'height': '400vh'
-            },
-            {
-              'position': 'static',
-              'width': '100vw'
+              'left': '50%',
+              'width': '100vw',
+              'height': '100vh',
+              'transform': 'translate(-50%, -50%)',
+              'background-position-y': 'center'
             }
           ],
           table: [
@@ -270,6 +277,8 @@ export default {
               'position': 'fixed',
               'top': '50%',
               'left': '50%',
+              'width': '80vw',
+              'height': '80vh',
               'transform': 'translate(-50%, -50%)'
             },
             {
@@ -356,11 +365,12 @@ export default {
       if ( mapStart - 200 < currentHieght && currentHieght < mapStart ) {
 
         this.mapAnimation.step = 1;
-        this.map.title.isShow = true
+        this.map.title.isShow = false
       } else if ( mapStart <= currentHieght && currentHieght < hint1 ) {
 
         this.mapAnimation.step = 2;
         this.targetControl()
+        this.map.title.isShow = true
       } else if ( hint1 <= currentHieght && currentHieght < hint2 ) {
 
         this.mapAnimation.step = 3;
@@ -380,12 +390,14 @@ export default {
       } else if (  hint5 <= currentHieght && currentHieght < mapEnd - 200 ) {
         this.mapAnimation.step = 7;
         this.targetControl('target5')
+        this.map.title.isShow = true
       } else if (  mapEnd - 200 <= currentHieght && currentHieght < mapEnd ) {
         this.mapAnimation.step = 8;
         this.targetControl()
+        this.map.title.isShow = false
+
       } else if (  currentHieght < mapEnd ||  mapStart - 200 < currentHieght ) {
         this.mapAnimation.step = 0;
-        this.map.title.isShow = false
         this.targetControl()
       }
     }, 133
@@ -435,8 +447,8 @@ export default {
 
 <style lang="scss">
 $target-color: rgba(#8FC320, 1);
-$target-size: 85px;
-$target-mobile-size: 50px;
+$target-size: 10vw;
+$target-mobile-size: 85px;
 
 .animation-map {
     background-color: inherit;
@@ -446,17 +458,6 @@ $target-mobile-size: 50px;
       transition: all 1s;
       font-weight: 900;
       background-color: rgba(0, 0, 0, 0);
-    }
-    .map-title {
-      width: 100%;
-      position: relative;
-      text-align: center;
-      margin: 0px;
-      padding: 0px;
-      z-index: 120;
-    }
-    .map-title-active {
-      opacity: 0;
     }
     .map-wrapper {
       position: relative;
@@ -476,7 +477,7 @@ $target-mobile-size: 50px;
         background-size: contain;
         background-repeat: no-repeat;
         z-index: 110;
-        transition: all 1s;
+        transition: all 0.5s;
         transform-origin: center;
         width: 400vw;
         height: 400vh;
@@ -491,6 +492,24 @@ $target-mobile-size: 50px;
           background-size: contain;
           top: 50%;
           left: 50%;
+        }
+        .map-title {
+          position: absolute;
+          text-align: center;
+          width: 100%;
+          margin: 0px;
+          padding: 0px;
+          z-index: 120;
+          top: -10%;
+          left: 50%;
+          font-size: 1em;
+          transform: translateX(-50%);
+          @media screen and (min-width: 1024px) {
+            font-size: 2em;
+          }
+        }
+        .map-title-active {
+          opacity: 0;
         }
         .targets {
           border: solid 1px $target-color;
@@ -526,7 +545,11 @@ $target-mobile-size: 50px;
           position: absolute;
           z-index: 120;
           left: 23%;
-          top: 20.5%;
+          top: 21.5%;
+          @media (min-width: 768px) and (max-width: 1023px) {
+            left: 24%;
+            top: 27.5%;
+          } 
           @media screen and (min-width: 1024px) {
             left: 23%;
             top: 73%;
@@ -536,23 +559,31 @@ $target-mobile-size: 50px;
           position: absolute;
           z-index: 120;
           left: 26%;
-          top: 13.5%;
+          top: 14.5%;
+          @media (min-width: 768px) and (max-width: 1023px) {
+            left: 26.5%;
+            top: 18.5%;
+          }
           @media screen and (min-width: 1024px) {
             position: absolute;
             z-index: 120;
-            left: 26%;
-            top: 49%;
+            left: 25.5%;
+            top: 48%;
           }     
         }
         .target3 {
           position: absolute;
           z-index: 120;
           left: 64%;
-          top: 21%;
+          top: 22%;
+          @media (min-width: 768px) and (max-width: 1023px) {
+            left: 64.5%;
+            top: 28.5%;
+          }
           @media screen and (min-width: 1024px) {
             position: absolute;
             z-index: 120;
-            left: 63%;
+            left: 62%;
             top: 76%;
           }
         }
@@ -560,22 +591,30 @@ $target-mobile-size: 50px;
           position: absolute;
           z-index: 120;
           left: 61%;
-          top: 15.5%;
+          top: 16.5%;
+          @media (min-width: 768px) and (max-width: 1023px) {
+            left: 61.5%;
+            top: 21.5%;
+          } 
           @media screen and (min-width: 1024px) {
             position: absolute;
             z-index: 120;
-            left: 60%;
+            left: 59.5%;
             top: 56%;
           }
         }
         .target5 {
           position: absolute;
           left: 58%;
-          top: 5.5%;
+          top: 6.5%;
+          @media (min-width: 768px) and (max-width: 1023px) {
+            left: 58.5%;
+            top: 8%;
+          }
           @media screen and (min-width: 1024px) {
             position: absolute;
             z-index: 120;
-            left: 57%;
+            left: 56.5%;
             top: 20%;
           }     
         }
@@ -598,8 +637,7 @@ $target-mobile-size: 50px;
           @media (min-width: 768px) and (max-width: 1023px) {
             top: 50%;
             right: 10%;
-            width: 380PX;
-            height: 100PX;
+            width: 50%;
           }
           @media screen and (min-width: 1024px) {
             top: 50%;
@@ -626,7 +664,6 @@ $target-mobile-size: 50px;
             top: 50%;
             right: 10%;
             width: 380PX;
-            height: 100PX;
           }
           @media screen and (min-width: 1024px) {
             top: 50%;
@@ -652,8 +689,7 @@ $target-mobile-size: 50px;
           @media (min-width: 768px) and (max-width: 1023px) {
             top: 50%;
             right: 10%;
-            width: 380PX;
-            height: 100PX;
+            width: 50%;
           }
           @media screen and (min-width: 1024px) {
             top: 50%;
@@ -679,8 +715,7 @@ $target-mobile-size: 50px;
           @media (min-width: 768px) and (max-width: 1023px) {
             top: 50%;
             right: 10%;
-            width: 380PX;
-            height: 100PX;
+            width: 50%;
           }
           @media screen and (min-width: 1024px) {
             top: 50%;
@@ -706,8 +741,7 @@ $target-mobile-size: 50px;
           @media (min-width: 768px) and (max-width: 1023px) {
             top: 50%;
             right: 10%;
-            width: 380PX;
-            height: 100PX;
+            width: 50%;
           }
           @media screen and (min-width: 1024px) {
             top: 50%;

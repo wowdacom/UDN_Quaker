@@ -40,7 +40,7 @@
             <h4><b>0-6個月嬰兒主要營養素攝取不足百分比(%)</b></h4>
           </Column-One>
           <p><br></p>
-          <Youtube :src="require('../static/video/doctor_talking.mp4')" showinfo="no" controls="yes" autoplay="no" muted="yes"></Youtube>
+          <Youtube src=" https://www.youtube.com/embed/FLQk-DSXp9U" showinfo="no" controls="yes" autoplay="no" muted="yes"></Youtube>
           <p><br></p>
           <p>小兒科陳木榮醫師（柚子醫師）指出，<b>「鐵質是身體裡面氧氣攜帶的重要物質，如果一個孩子鐵質缺乏的話，可能影響到他的學習，也可能影響智力發展。」</b>，因此建議父母親，嬰兒滿4-6個月開始搭配富含鐵的副食品，例如可以強化鐵的米精、麥精，幫助孩子的營養攝取。</p>
           <p><br></p>
@@ -48,12 +48,11 @@
           <p><br></p>
           <h3>訓練孩子咀嚼的能力　首重「用湯匙餵食」</h3>
           <p><br></p>
+          <Quote style="color: #d15c40" text="小孩子在剛開始適應副食品的時候，一般先從米精、麥精，香蕉泥，地瓜泥、水果泥等餬狀泥狀的食物開始，一次一種少量、多樣化地利用湯匙慢慢餵食。"></Quote>
+          <p><br></p>
           <p>陳木榮醫師曾在診間遇過有父母把添加副食品誤以為只要在泡奶時順便在奶瓶裡加一湯匙或兩湯匙的米精，就等於給孩子吃了副食品。他說：<b>「副食品的意義不是只有增加熱量而已，你加在奶粉裡面就是增加熱量，但是沒有訓練到小孩子咀嚼的能力。」</b></p>
           <p><br></p>
-          <Quote style="color: #d15c40" text="小孩子在剛開始適應副食品的時候，一般先從米精、麥精，香蕉泥，地瓜泥、水果泥等餬狀泥狀的食物開始，一次一種少量、多樣化地利用湯匙慢慢餵食。"></Quote>
-
-          <p><br></p>
-          <p>不僅有助於孩子學習咀嚼的動作與體驗食物的層次，獲取更多營養，還能早期型塑良好飲食習慣，奠定後期對非傳染性疾病，例如肥胖、偏食的免疫能力。</p>
+          <p>因此建議一開始製作的副食品可用米、麥精調成餬狀，置放於碗中，用湯匙一口一口餵食不僅有助於孩子學習咀嚼的動作與體驗食物的層次，獲取更多營養，還能早期型塑良好飲食習慣，奠定後期對非傳染性疾病，例如肥胖、偏食的免疫能力。</p>
           <p><br></p>
           <p>醫師指出，孩子的第一顆牙齒，可能五、六個月就會慢慢地冒出來，爸媽製作副食品可漸漸地保留一點點小顆粒，可保持食物的能量和營養密度，較厚實的粗食能可以幫助孩子訓練咀嚼能力，讓孩子能順利過渡到能與大人一起共餐，接受各種質地的食物。</p>
           <p><br></p>
@@ -75,6 +74,8 @@
           <p>孩子剛出生時，小兒科醫師都會告訴爸媽利用新生兒的體重計算每日奶量。隨著孩子進階到需要添加副食品的階段，爸爸媽媽一邊喜悅孩子的成長，一邊內心卻感到「無所適從」。</p>
           <p><br></p>
           <p>一方面是因為一旦開始副食品，就沒有明確的公式計算孩子究竟要吃到多少量。或者，多數的爸媽費心做了副食品，卻遇到「嬰兒不吃」的問題，確實讓人頭疼。</p>
+          <p><br></p>
+          <p>臺北醫學大學附設醫院營養室林郁茹組長說，過去十年的臨床經驗，常常遇到營養相關的情況就是一到三歲的孩子體格長得不夠，被爸媽帶來醫院看小兒科。經由兒醫師轉介到營養室，讓營養師確認孩子每天吃的量是否符合建議量，或是孩子有無特殊的飲食習慣，例如偏食或挑食。</p>
           <p><br></p>
           <p>結果發現，這些孩子多數都會在餐與餐間吃零食，進而影響正餐的時候吃不到建議攝取量，導致發育緩慢。林郁茹營養師說，<b>「一到三歲的孩子，每餐至少要吃半碗到七分滿的飯，想長高長壯就是要吃到這麼多的量。」</b></p>
         </content-container>
@@ -124,10 +125,13 @@
           <hr>
           <h5>[1]資料來源：Dewey KG, Brown KH: Update on technical issues concerning complementary feeding of young children in developing countries and implications for intervention programs. Food Nutr Bull 2003;24:5-28</h5>
           <p><br></p>
+        </content-container>
+
+        <content-container style="background-color: white">  
           <Share href="https://udn.com/upf/newmedia/2017_data/ideal/index.html"></Share>
-          <logo use-ubrand="yes" use-vision='yes'>
+          <logo use-ubrand="yes" use-vision='no'>
             <div class="logo">
-              <a href="https://udn.com/news/index" target="_blank"><img src="https://udn.com/upf/newmedia/image/20180829Logo/logo_news2.jpg"></a>
+ 
             </div>         
           </logo>
           <p><br></p>
@@ -171,11 +175,13 @@ import AnimationMap from './components/new-feature/AnimationMap'
 import Relate from './components/Relate'
 import FBComment from './components/FBComment'
 import Editor from './components/Editor'
+import Logo from './components/Logo'
 
 export default {
   name: 'App',
   data () {
     return {
+      controlAuto: ' '
     }
   },
   components: {
@@ -192,7 +198,8 @@ export default {
     'AnimationMap': AnimationMap,
     'Relate': Relate,
     'fb-comment': FBComment,
-    'editor': Editor
+    'editor': Editor,
+    'logo': Logo
   },
 }
 </script>
@@ -218,6 +225,10 @@ html {
 body {
   width: 100vw;
   overflow: hidden;
+}
+
+video {
+  width: 100%;
 }
 
 #app {
