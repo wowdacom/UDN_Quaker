@@ -2,8 +2,7 @@
     <div class="animation-map" ref="animation-map">
         <div class="extra-wrapper"  ref="map-start">
           <div class="map-wrapper" :style="animationMapStep[step]" >
-            <img :src="map.src" :style="animationTargetStep[step]" class="map">
-            <img class="target" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point01.png')" alt="">
+            <img :src="map.src" :style="animationTargetStep[screenName][step]" class="map">
           </div>
         </div>
         <div class="map-hints1" ref="hints1">
@@ -23,12 +22,12 @@
         </div>
         <div class="extra-wrapper"  ref="map-end">
           <div class="map-wrapper" :style="animationMapStep[step]">
-            <img :src="map.src" :style="animationTargetStep[step]" class="map">
-            <img class="target" :class="{ 'isShow': targets.target1.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point01.png')" alt="">
-            <img class="target" :class="{ 'isShow': targets.target2.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point02.png')" alt="">
-            <img class="target" :class="{ 'isShow': targets.target3.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point03.png')" alt="">
-            <img class="target" :class="{ 'isShow': targets.target4.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point04.png')" alt="">
-            <img class="target" :class="{ 'isShow': targets.target5.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point05.png')" alt="">
+            <img :src="map.src" :style="animationTargetStep[screenName][step]" class="map">
+            <img class="target" :class="{ 'isShow': targets.target1.isShow }" :style="animationTargetStep[screenName][step]" :src="require('~/CoverBg/web/point01.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target2.isShow }" :style="animationTargetStep[screenName][step]" :src="require('~/CoverBg/web/point02.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target3.isShow }" :style="animationTargetStep[screenName][step]" :src="require('~/CoverBg/web/point03.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target4.isShow }" :style="animationTargetStep[screenName][step]" :src="require('~/CoverBg/web/point04.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target5.isShow }" :style="animationTargetStep[screenName][step]" :src="require('~/CoverBg/web/point05.png')" alt="">
           </div>
         </div>
     </div>  
@@ -52,7 +51,7 @@ export default {
           'position': 'relative',
           'top': '0',
           'left': '0',
-          'transform': 'translateX(-25%)'
+          // 'transform': 'translateX(-25%)'
         },
         {
           'position': 'fixed',
@@ -83,15 +82,17 @@ export default {
           'top': '0'
         }
       ],
-      animationTargetStep: [
+      animationTargetStep: {
+        'table': [
         {
           'position': 'absolute',
-          'left': '50%',
-          'transform': 'scale(0.25)'
+          'transform': 'scale(0.5)',
+          
         },
         {
           'position': 'absolute',
           'transform': 'translate(0%, 0%) scale(.5)',
+          'top': '0%'
         },
         {
           'position': 'absolute',
@@ -118,6 +119,78 @@ export default {
           'transform': 'translate(0%, 0%) scale(.5)',
         }
       ],
+        'pad': [
+        {
+          'position': 'absolute',
+          'transform': 'scale(0.5)',
+          'top': '50%'     
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(0%, 50%) scale(.5)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-10%, -45%) scale(2)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-25%, -15%) scale(2)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-125%, -50%) scale(2)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-115%, -30%) scale(2)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-100%, 0%) scale(2)',
+        },
+        {
+          'position': 'absolute',
+          'transform': 'translate(-100%, 0%)',
+          'transform': 'scale(.5)',
+        }
+      ],
+        'mobile': [
+          {
+          'position': 'absolute',
+          'top': '50%',
+          'transform': 'scale(0.5)'
+          },
+          {
+            'position': 'absolute',
+            'transform': 'translate(0%, 50%) scale(.5)',
+          },
+          {
+            'position': 'absolute',
+            'transform': 'translate(-20%, -90%) scale(2.5)',
+          },
+          {
+            'position': 'absolute',
+            'transform': 'translate(-30%, -30%) scale(2.5)',
+          },
+          {
+            'position': 'absolute',
+            'transform': 'translate(-160%, -120%) scale(2.5)',
+          },
+          {
+            'position': 'absolute',
+            'transform': 'translate(-130%, -80%) scale(2.5)',
+          },
+          {
+            'position': 'absolute',
+            'transform': 'translate(-120%, 0%) scale(2.5)',
+          },
+          {
+            'position': 'absolute',
+            'transform': 'translate(0%, 0%) scale(.5)',
+          }
+        ]
+      },
       step: 0,
       screenWidth: document.body.clientWidth,
       screenName: 'mobile',
@@ -170,224 +243,33 @@ export default {
             img: require('~/CoverBg/web/content-06.jpg')
           }
         ],
-        step: 0,
-        steps: {
-          mobile: [
-            {
-              'position': 'relative',
-              'top': '50%',
-              'left': '50%',
-              'width': '100vw',
-              'height': '30vh',
-              'background-position-y': 'top'
-            },
-            {
-              'position': 'fixed',
-              'top': '50%',
-              'left': '50%',
-              'width': '100vw',
-              'height': '100vh'
-            },
-            {
-              'position': 'fixed',
-              'top': '50%',
-              'left': '0',
-              'transform': 'translateY(-5%)',
-              'width': '100vw',
-              'height': '100vh'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-5%, -5%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-10%, -5%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-60%, -15%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-53%, -10%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '0%',
-              'left': '0',
-              'transform': 'translate(-50%, 0%)'
-            },
-            {
-              'position': 'relative',
-              'top': '50%',
-              'left': '50%',
-              'width': '100vw',
-              'height': '100vh',
-              'background-position-y': 'center'
-            }
-          ],
-          pad: [
-            {
-              'position': 'relative',
-              'top': '50%',
-              'left': '50%',
-              'width': '100vw',
-              'height': '100vh',
-              'transform': 'translate(-50%, -30%)',
-              'background-position-y': 'top'
-            },
-            {
-              'position': 'fixed',
-              'top': '50%',
-              'left': '50%',
-              'width': '100vw',
-              'height': '100vh'
-            },
-            {
-              'position': 'fixed',
-              'top': '50%',
-              'left': '0',
-              'transform': 'translateY(-5%)',
-              'width': '100vw',
-              'height': '100vh'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-5%, -15%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-10%, -3%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-62%, -14%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-58%, -2%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '0%',
-              'left': '0',
-              'transform': 'translate(-52%, 5%)'
-            },
-            {
-              'position': 'relative',
-              'top': '50%',
-              'left': '50%',
-              'width': '100vw',
-              'height': '100vh',
-              'transform': 'translate(-50%, -50%)',
-              'background-position-y': 'center'
-            }
-          ],
-          table: [
-            {
-              'position': 'relative',
-              'top': '50%',
-              'left': '50%',
-              'transform': 'translate(-50%, -50%)',
-              'width': '80vw',
-              'height': '80vh'
-            },
-            {
-              'position': 'fixed',
-              'top': '50%',
-              'left': '50%',
-              'transform': 'translate(-50%, -50%)',
-              'width': '80vw',
-              'height': '80vh'
-            },
-            {
-              'position': 'fixed',
-              'top': '50%',
-              'left': '50%',
-              'width': '80vw',
-              'height': '80vh',
-              'transform': 'translate(-50%, -50%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(0%, -50%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-5%, -15%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-40%, -50%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-37%, -20%)'
-            },
-            {
-              'position': 'fixed',
-              'top': '80px',
-              'left': '0',
-              'transform': 'translate(-40%, -5%)'
-            },
-            {
-              'position': 'relative',
-              'top': '50%',
-              'left': '50%',
-              'transform': 'translate(-50%, -50%)',
-              'width': '80vw',
-              'height': '80vh'
-            }
-          ]
-        }
+        step: 0
       }
     }
   },
   mounted () {
-        const vm = this
-            window.onresize = () => {
-                return (() => {
-                    window.screenWidth = document.body.clientWidth
-                    vm.screenWidth = window.screenWidth
-                })()
-            }
-
-        if ( 768 <= vm.screenWidth && vm.screenWidth <= 1023 ) {
-          this.screenName = 'pad'
-        } else if ( 1024 < vm.screenWidth ) {
-          this.screenName = 'table'
-        } else {
-          this.screenName = 'mobile'
-        }
-
-        window.addEventListener('scroll', this.handleScroll)
+    this.handleResize()
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
+    handleResize () {
+      const vm = this
+      window.onresize = () => {
+          return (() => {
+              window.screenWidth = document.body.clientWidth
+              vm.screenWidth = window.screenWidth
+          })()
+      }
+      
+      if ( 768 <= vm.screenWidth && vm.screenWidth <= 1023 ) {
+        vm.screenName = 'pad'
+      } else if ( 1024 < vm.screenWidth ) {
+        vm.screenName = 'table'
+      } else {
+        vm.screenName = 'mobile'
+      }
+      
+    },
     handleScroll: _throttle(function (e) {
 
       let currentHieght = window.pageYOffset
@@ -450,8 +332,8 @@ export default {
         this.map.title.isShow = false
 
       } else if (  currentHieght < mapEnd ||  mapStart - 200 < currentHieght ) {
-        this.mapAnimation.step = 0;
         this.step = 0
+        this.mapAnimation.step = 0;
         this.targetControl()
       } else {
         this.step = 0
