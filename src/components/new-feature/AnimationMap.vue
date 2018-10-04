@@ -25,6 +25,10 @@
           <div class="map-wrapper" :style="animationMapStep[step]">
             <img :src="map.src" :style="animationTargetStep[step]" class="map">
             <img class="target" :class="{ 'isShow': targets.target1.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point01.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target2.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point02.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target3.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point03.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target4.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point04.png')" alt="">
+            <img class="target" :class="{ 'isShow': targets.target5.isShow }" :style="animationTargetStep[step]" :src="require('~/CoverBg/web/point05.png')" alt="">
           </div>
         </div>
     </div>  
@@ -47,7 +51,7 @@ export default {
         {
           'position': 'relative',
           'top': '0',
-          'left': '50%',
+          'left': '0',
           'transform': 'translateX(-25%)'
         },
         {
@@ -82,6 +86,7 @@ export default {
       animationTargetStep: [
         {
           'position': 'absolute',
+          'left': '50%',
           'transform': 'scale(0.25)'
         },
         {
@@ -455,6 +460,7 @@ export default {
     ),
     targetControl (currentTarget) {
 
+      console.log("its work");
       let targetDefault = {
         target1: {
           isShow: false
@@ -525,7 +531,7 @@ $target-mobile-size: 85px;
           top: 0;
           left: 0;
           z-index: 120;
-          transform-origin: left top;
+          transform-origin: top left;
           transform: translateY(-50%);
           transition: all 1s;
         }
